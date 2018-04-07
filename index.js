@@ -3,7 +3,7 @@ const trainingAnswer = tf.variable(tf.scalar(Math.random()));
 
 function generateData(numPoints, answer) {
     return tf.tidy(() => {
-        // 產生隨機資料
+        // 產生常態分佈的隨機資料
         const xs = tf.randomNormal([numPoints], -1, 1);
         // 套用正確模型產生答案
         const ans = tf.scalar(answer);
@@ -50,7 +50,7 @@ async function learnCoefficients(dataCount, iterations) {
     await train(trainingData.xs, trainingData.ys, iterations);
 
     // 印出訓練結果
-    console.log('After TRaining: ', await trainingAnswer.data());
+    console.log('After Training: ', await trainingAnswer.data());
 }
 
 learnCoefficients(100, 1000);
